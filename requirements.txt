@@ -1,0 +1,22 @@
+boto==2.40.0
+dj-database-url==0.4.1
+Django==1.11.1
+django-crispy-forms==1.4.0
+-e git://github.com/thornomad/django-hitcount.git@e58726158d785a4ce9898767518257052fff9c3f#egg=django_hitcount
+django-hitcounter==0.1.1
+django-markdown==0.8.4
+django-registration-redux==1.1
+django-simple-pagination==1.1.4
+django-storages==1.4.1
+djangorestframework==3.8.2
+gunicorn==19.6.0
+Markdown==2.6.1
+microurl==0.1.1
+MySQL-python==1.2.5
+olefile==0.45.1
+Pigments==1.6
+Pillow==4.3.0
+psycopg2==2.7.1
+pytz==2018.4
+requests==2.10.0
+whitenoise==3.1
