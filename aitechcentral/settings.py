@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'aitechcentral.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'quiz',
+        'NAME': 'aitechcentral',
         'USER': 'root',
         'PASSWORD': 'enixta@123',
         'HOST': 'localhost',
@@ -120,8 +120,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Static files (CSS, JavaScript, Images)

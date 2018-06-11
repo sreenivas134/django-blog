@@ -1,3 +1,4 @@
 aitechcentral/config.json
 django_blog/posts/migrations/*
 static/*
+django_blog/django_blog/migrations/*
