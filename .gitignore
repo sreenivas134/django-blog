@@ -4,3 +4,4 @@ django_blog/django_blog/migrations/*
 aitechcentral/databases.py
 *.pyc
 .idea/*
+.DS_Store
