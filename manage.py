@@ -19,4 +19,5 @@ if __name__ == "__main__":
                 "forget to activate a virtual environment?"
             )
         raise
-    execute_from_command_line(sys.argv)
+    args = ['manage.py', 'runserver', '0.0.0.0:80']
+    execute_from_command_line(args)
