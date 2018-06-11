@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from databases import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,14 +78,7 @@ WSGI_APPLICATION = 'aitechcentral.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aitechcentral',
-        'USER': 'root',
-        'PASSWORD': 'enixta@123',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
+    'default': central
 }
 
 
