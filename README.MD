@@ -1,0 +1,1 @@
+## This blog is a customised version of django-blog-it (https://github.com/MicroPyramid/django-blog-it)
