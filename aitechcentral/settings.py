@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '3nh0t8dlr981qf8@jpbs+5m$%ituuv6mz&s&dornnka*qz2ao$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [allowed_hosts]
+ALLOWED_HOSTS = allowed_hosts
 
 
 # Application definition
@@ -124,9 +124,10 @@ EMAIL_USE_TLS = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR,"static/aitechcentral")
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR +  "/static/",
+    os.path.join(BASE_DIR, "django_blog/django_blog/static"),
 ]
 
 import json
