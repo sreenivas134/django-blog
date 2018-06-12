@@ -1,7 +1,7 @@
 aitechcentral/config.json
 django_blog/posts/migrations/*
 django_blog/django_blog/migrations/*
-aitechcentral/databases.py
+aitechcentral/config.py
 *.pyc
 .idea/*
 .DS_Store
