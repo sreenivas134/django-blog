@@ -111,7 +111,7 @@
                             {% endif %}
                             <div class="blog_content_container">
                               <div class="author_category">
-                                <a href="#" class="author" itemprop="author" itemtype="http://schema.org/Person">By <span itemprop="name">{{ blog.user }}</span></a>
+                                <a href="#" class="author" itemprop="author" itemtype="http://schema.org/Person">By <span itemprop="name">{{ blog.user.first_name }}</span></a>
                                 <a href="{% url 'selected_category' category_slug=blog.category.slug %}" class="category" itemprop="category" itemtype="http://schema.org/category"><span itemprop="name">{{ blog.category }}</span></a>
                               </div>
                               <div class="blog_title" itemprop="blog-article">

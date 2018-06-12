@@ -127,7 +127,7 @@
                                <a href="{% url 'blog_post_view' blog_slug=post.slug %}">{{ post.title }}</a>
                             </div>
                             <div class="blog_cat_author">
-                              <a href="#" class="author">By {{ post.user }}</a>
+                              <a href="#" class="author">By {{ post.user.first_name }}</a>
                               <a href="{% url 'selected_category' category_slug=post.category.slug %}" class="category">{{ post.category }}</a>
                             </div>
                             <br clear="all">
