@@ -49,6 +49,7 @@ Edit
             {% endif %}
 
             <!--Custom post tags field-->
+            <label>Post Tags</label>
             <input name="tags" placeholder="Please enter your Blog Tags" class="form-control myTags" id="id_tags"
               value = "{% if tags_list %} {% for tag in tags_list %} {{ tag.name }}, {% endfor %} {% endif %}"/>
           </div>
