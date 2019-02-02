@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
+from django.utils import timezone
 
 
 ROLE_CHOICE = (
@@ -205,10 +206,10 @@ class PostHistory(models.Model):
 
 
 class Image_File(models.Model):
-    upload = models.FileField(upload_to="static/uploads/%Y/%m/%d/")
-    date_created = models.DateTimeField(default=datetime.datetime.now)
+    upload = models.FileField(upload_to="uploads/%Y-%m-%d")
+    date_created = models.DateTimeField(default=timezone.now)
     is_image = models.BooleanField(default=True)
-    thumbnail = models.FileField(upload_to="static/uploads/%Y/%m/%d/", blank=True, null=True)
+    thumbnail = models.FileField(upload_to="uploads/%Y-%m-%d", blank=True, null=True)
 
     def __str__(self):
         return self.date_created

@@ -13,10 +13,10 @@
  * (1) https://ckeditor.com/cke4/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) https://ckeditor.com/cke4/builder/2a41f270702a4aa95264b023eaebc3ca
+ * (2) https://ckeditor.com/cke4/builder/fc5a65f6bcd0e73c42e43df80fc86c3a
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) https://ckeditor.com/cke4/builder/download/2a41f270702a4aa95264b023eaebc3ca
+ * (3) https://ckeditor.com/cke4/builder/download/fc5a65f6bcd0e73c42e43df80fc86c3a
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -26,7 +26,7 @@
 
 var CKBUILDER_CONFIG = {
 	skin: 'moonocolor',
-	preset: 'full',
+	preset: 'standard',
 	ignore: [
 		'.DS_Store',
 		'.bender',
@@ -55,70 +55,42 @@ var CKBUILDER_CONFIG = {
 		'a11yhelp' : 1,
 		'about' : 1,
 		'basicstyles' : 1,
-		'bidi' : 1,
 		'blockquote' : 1,
 		'chart' : 1,
 		'clipboard' : 1,
+		'codeTag' : 1,
 		'codemirror' : 1,
 		'codesnippet' : 1,
-		'codesnippetgeshi' : 1,
 		'colorbutton' : 1,
-		'colordialog' : 1,
 		'contextmenu' : 1,
-		'copyformatting' : 1,
-		'dialogadvtab' : 1,
-		'div' : 1,
-		'easyimage' : 1,
 		'elementspath' : 1,
-		'emoji' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
 		'eqneditor' : 1,
 		'filebrowser' : 1,
-		'flash' : 1,
 		'floatingspace' : 1,
 		'font' : 1,
 		'format' : 1,
-		'forms' : 1,
+		'hkemoji' : 1,
 		'horizontalrule' : 1,
 		'htmlwriter' : 1,
-		'iframe' : 1,
 		'image' : 1,
-		'image2' : 1,
-		'imagepaste' : 1,
-		'imageresize' : 1,
-		'imagerotate' : 1,
-		'imageuploader' : 1,
-		'indentblock' : 1,
 		'indentlist' : 1,
-		'justify' : 1,
-		'language' : 1,
+		'letterspacing' : 1,
 		'lineheight' : 1,
 		'link' : 1,
 		'list' : 1,
-		'liststyle' : 1,
 		'magicline' : 1,
-		'mathjax' : 1,
 		'maximize' : 1,
-		'newpage' : 1,
 		'pagebreak' : 1,
-		'pastecode' : 1,
+		'pasteFromGoogleDoc' : 1,
 		'pastefromexcel' : 1,
 		'pastefromword' : 1,
 		'pastetext' : 1,
-		'pbckcode' : 1,
-		'preview' : 1,
-		'print' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
-		'save' : 1,
 		'scayt' : 1,
-		'selectall' : 1,
-		'showblocks' : 1,
 		'showborders' : 1,
-		'simage' : 1,
-		'slideshow' : 1,
-		'smiley' : 1,
 		'sourcearea' : 1,
 		'specialchar' : 1,
 		'stylescombo' : 1,
@@ -126,18 +98,10 @@ var CKBUILDER_CONFIG = {
 		'table' : 1,
 		'tableselection' : 1,
 		'tabletools' : 1,
-		'templates' : 1,
-		'textindent' : 1,
-		'texzilla' : 1,
 		'toolbar' : 1,
-		'uicolor' : 1,
 		'undo' : 1,
-		'uploadfile' : 1,
-		'uploadimage' : 1,
-		'video' : 1,
 		'wsc' : 1,
-		'wysiwygarea' : 1,
-		'youtube' : 1
+		'wysiwygarea' : 1
 	},
 	languages : {
 		'en' : 1
