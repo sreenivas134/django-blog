@@ -38,7 +38,7 @@
                       <a href="{% url 'blog_post_view' blog_slug=blog_name.slug %}" itemprop="name headline">{{ blog_name.title }}</a>
                     </div>
                     <div class="blog_cat_author text-center">
-                        <a href="#" class="author" itemprop="author" itemtype="http://schema.org/Person">By <span itemprop="name">{{ blog_name.user }}</span></a>
+                        <a href="#" class="author" itemprop="author" itemtype="http://schema.org/Person">By <span itemprop="name">{{ blog_name.user.first_name }}</span></a>
                         <a href="{% url 'selected_category' category_slug=blog_name.category.slug %}" class="category" itemprop="category" itemtype="http://schema.org/category"><span itemprop="name">{{ blog_name.category }}</span></a>
                         <br clear="all">
                     </div>
