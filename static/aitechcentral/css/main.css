@@ -83,7 +83,7 @@ a:hover {
 /* login_block ends here */
 /* header starts here */
 header {
-  background: #30394A; }
+  background: #636569; }
   header .navbar {
     margin-bottom: 0px; }
     header .navbar.navbar-default {
@@ -108,8 +108,19 @@ header {
           header .navbar.navbar-default .navbar-nav li.open .dropdown-menu li a:hover {
             background: #2A323F;
             color: #fff; }
-    header .navbar .navbar-header .navbar-brand {
-      color: #fff; }
+
+header .navbar .navbar-header .navbar-brand {
+      color: #dedada;
+      font-family: cursive;
+      font-weight: bold;}
+
+#site-logo {
+    max-height: 30px !important;
+    display: inline;
+    margin-top: -10px;
+    margin-right: 3px;
+}
+
 
 /* header ends here */
 /* main_container starts here */

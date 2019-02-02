@@ -1,0 +1,33 @@
+header .navbar .navbar-header .navbar-brand {
+      color: #ff591a;
+      font-family: cursive;
+      font-weight: bold;
+      text-transform: unset;
+      }
+
+#site-logo {
+    max-height: 30px !important;
+    display: inline;
+    margin-top: -10px;
+    margin-right: 2px;
+}
+
+header .navbar-default {
+        background: #ffffff !important;
+        border-bottom: 1px #aba8a8 solid;
+}
+
+header .navbar-default .navbar-right {
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #191818;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.navbar .navbar-form input {
+    background-color: #f3f2f2;
+}
