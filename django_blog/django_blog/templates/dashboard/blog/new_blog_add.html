@@ -88,10 +88,8 @@ Edit
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('textarea#id_content').attr('id', 'editor1');
-    $('textarea#editor1').attr('name', 'editor1');
     // for form submission
-    CKEDITOR.replace('editor1',{
+    CKEDITOR.replace('content',{
       filebrowserUploadUrl: '{% url "upload_photos" %}',
       filebrowserBrowseUrl: '{% url "recent_photos" %}',
       filebrowserImageBrowseUrl: '{% url "recent_photos" %}?type=Images',
