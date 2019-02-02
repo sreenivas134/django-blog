@@ -525,7 +525,8 @@ header .navbar-default {
       line-height: 22px;
       font-weight: 400;
       font-size: 12px;
-      margin-top: 10px; }
+      margin-top: 10px;
+      margin-left: 40px; }
     .main_container .middle_container .main_left_container .blog_detail_container .blog_details .blog_panel .panel-body .blog_detail_content .blog_title {
       color: #000;
       text-align: center; }

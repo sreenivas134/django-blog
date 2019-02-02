@@ -250,8 +250,9 @@ class PostEditView(AdminMixin, UpdateView):
         context['status_choices'] = STATUS_CHOICE,
         context['categories_list'] = categories_list
         context['history_list'] = self.get_object().history.all()
+        context['tags_list'] = self.get_object().tags.all()
         self.formset = inlineformset_factory(
-            Post, Post_Slugs, can_delete=True, extra=3, fields=('slug', 'is_active'),
+            Post, Post_Slugs, can_delete=True, extra=0, fields=('slug', 'is_active'),
             formset=CustomBlogSlugInlineFormSet,
             widgets={'slug': forms.TextInput(attrs={'class': 'form-control'})})
         context['formset'] = self.formset(instance=self.get_object())
