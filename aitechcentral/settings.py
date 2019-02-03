@@ -131,17 +131,15 @@ STATIC_RELATIVE = "static/aitechcentral"
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_RELATIVE)
 STATIC_URL = '/static/'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-print MEDIA_ROOT
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "django_blog/django_blog/static"),
 ]
 
 import json
-f_config = open('aitechcentral/config.json','r')
+f_config = open('aitechcentral/config.json', 'r')
 config = json.loads(f_config.read())['env']
 for key, val in config.items():
     os.environ[key] = val['value']

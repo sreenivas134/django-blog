@@ -465,10 +465,14 @@ def recent_photos(request):
     ''' returns all the images from the data base '''
     imgs = []
     for obj in Image_File.objects.filter(is_image=True).order_by("-date_created"):
-        upurl = "/" + obj.upload.url
+        upurl = obj.upload.url
+        if not upurl.startswith('/'):
+            upurl = "/" + obj.upload.url
         thumburl = ""
         if obj.thumbnail:
-            thumburl = "/" + obj.thumbnail.url
+            thumburl = obj.thumbnail.url
+            if not obj.thumbnail.url.startswith('/'):
+                thumburl = "/" + obj.thumbnail.url
         imgs.append({'src': upurl, 'thumb': thumburl, 'is_image': True})
     return render_to_response('dashboard/browse.html', {'files': imgs})
 
