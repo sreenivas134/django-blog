@@ -517,6 +517,9 @@ header .navbar-default {
     .main_container .middle_container .main_left_container .blog_detail_container .blog_details .blog_panel .panel-body .blog_detail_content .blog_img {
       margin-bottom: 20px; }
       .main_container .middle_container .main_left_container .blog_detail_container .blog_details .blog_panel .panel-body .blog_detail_content .blog_img img {
+        margin-left: auto;
+	    margin-right: auto;
+	    display: block;
         max-width: 100%; }
     .main_container .middle_container .main_left_container .blog_detail_container .blog_details .blog_panel .panel-body .blog_detail_content .blog_description {
       color: #666;
