@@ -6,13 +6,6 @@ from .settings import MEDIA_URL, MEDIA_ROOT
 
 
 urlpatterns = [
-    url(r'^$', Home.as_view(), name='index'),
-    url(r'^blog/contact/$', contact_us, name='contact_us'),
-    url(r'^blog/category/(?P<category_slug>[-\w]+)/$', SelectedCategoryView.as_view(), name='selected_category'),
-    url(r'^blog/tags/(?P<tag_slug>[-\w]+)/$', SelectedTagView.as_view(), name='selected_tag'),
-    url(r'^blog/(?P<year>\w{0,})/(?P<month>\w{0,})/$', ArchiveView.as_view(), name='archive_posts'),
-    url(r'^blog/(?P<blog_slug>[-\w]+)/$', BlogPostView.as_view(), name='blog_post_view'),
-
     url(r'^dashboard/$', AdminLoginView.as_view(), name='admin_login'),
     url(r'^dashboard/gplus/$', google_login, name='google_login'),
     url(r'^fb/$', facebook_login, name='facebook_login'),
@@ -57,7 +50,7 @@ urlpatterns = [
         PageDeleteView.as_view(), name='delete_page'),
     url(r'^dashboard/bulk_actions_pages/$',
         BulkActionsPageView.as_view(), name='bulk_actions_pages'),
-    url(r'^(?P<page_slug>[-\w]+)/$', PageView.as_view(), name='page_view'),
+    url(r'^page/(?P<page_slug>[-\w]+)/$', PageView.as_view(), name='page_view'),
 
     url(r'^dashboard/upload_photos/$', upload_photos, name='upload_photos'),
     url(r'^dashboard/recent_photos/$', recent_photos, name='recent_photos'),
@@ -109,5 +102,14 @@ urlpatterns = [
     url(r'^dashboard/contactUs/$',
         configure_contact_us, name='configure_contact_us'),
     url(r'^dashboard/change-password/$', ChangePasswordView.as_view(), name='change_password'),
+
+
+    url(r'^$', Home.as_view(), name='index'),
+    url(r'^contact/$', contact_us, name='contact_us'),
+    url(r'^posts/$', PostView.as_view(), name='posts'),
+    url(r'^category/(?P<category_slug>[-\w]+)/$', SelectedCategoryView.as_view(), name='selected_category'),
+    url(r'^tags/(?P<tag_slug>[-\w]+)/$', SelectedTagView.as_view(), name='selected_tag'),
+    url(r'^archive/(?P<year>\w{0,})/(?P<month>\w{0,})/$', ArchiveView.as_view(), name='archive_posts'),
+    url(r'^(?P<blog_slug>[-\w]+)/$', BlogPostView.as_view(), name='blog_post_view'),
 
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)

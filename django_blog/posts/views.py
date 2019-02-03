@@ -45,6 +45,46 @@ def get_mini_url(url):
 
 
 class Home(ListView):
+    template_name = "posts/page.html"
+    model = Page
+    context_object_name = "page"
+
+    def get_context_data(self, *args, **kwargs):
+        try:
+            self.page = Page.objects.get(is_home=1)
+        except Page.DoesNotExist:
+            self.page = None
+
+        if not self.page:
+            self.template_name = "posts/new_index.html"
+            self.queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-updated_on')
+            self.context_object_name = "blog_posts"
+
+        if self.page:
+            context = super(Home, self).get_context_data(*args, **kwargs)
+            context.update({
+                "page": self.page
+            })
+        else:
+            context = super(Home, self).get_context_data(*args, **kwargs)
+            query_set = list()
+            for qset in self.queryset:
+                setattr(qset, 'short_url', get_mini_url(self.request.build_absolute_uri(reverse('blog_post_view',
+                                                                                                args=(qset.slug,)))))
+                query_set.append(qset)
+            context.update({
+                "description": settings.BLOG_DESCRIPTION,
+                "title": settings.BLOG_TITLE,
+                "keywords": settings.BLOG_KEYWORDS,
+                "author": settings.BLOG_AUTHOR,
+                "blog_posts": query_set
+            })
+        context.update(categories_tags_lists())
+
+        return context
+
+
+class Home1(ListView):
     template_name = "posts/new_index.html"
     queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-updated_on')
     context_object_name = "blog_posts"
@@ -53,7 +93,6 @@ class Home(ListView):
         context = super(Home, self).get_context_data(*args, **kwargs)
         query_set = list()
         for qset in self.queryset:
-            print get_mini_url(self.request.build_absolute_uri(reverse('blog_post_view', args=(qset.slug,))))
             setattr(qset, 'short_url', get_mini_url(self.request.build_absolute_uri(reverse('blog_post_view', args=(qset.slug,)))))
             query_set.append(qset)
         context.update({
@@ -65,6 +104,29 @@ class Home(ListView):
         })
         context.update(categories_tags_lists())
 
+        return context
+
+
+class PostView(ListView):
+    template_name = "posts/new_index.html"
+    queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-updated_on')
+    context_object_name = "blog_posts"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostView, self).get_context_data(*args, **kwargs)
+        query_set = list()
+        for qset in self.queryset:
+            setattr(qset, 'short_url', get_mini_url(self.request.build_absolute_uri(reverse('blog_post_view',
+                                                                                            args=(qset.slug,)))))
+            query_set.append(qset)
+        context.update({
+            "description": settings.BLOG_DESCRIPTION,
+            "title": settings.BLOG_TITLE,
+            "keywords": settings.BLOG_KEYWORDS,
+            "author": settings.BLOG_AUTHOR,
+            "blog_posts": query_set
+        })
+        context.update(categories_tags_lists())
         return context
 
 

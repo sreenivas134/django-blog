@@ -445,7 +445,10 @@ def upload_photos(request):
             obj.thumbnail.save(thumbnail_name, File(imdata))
         obj.save()
         os.remove(os.path.join(settings.BASE_DIR, thumbnail_name))
-        upurl = "/" + obj.upload.url
+        if not obj.upload.url.startswith('/'):
+            upurl = "/" + obj.upload.url
+        else:
+            upurl = obj.upload.url
     return HttpResponse(
         """<script type='text/javascript'>
         window.parent.CKEDITOR.tools.callFunction({0}, '{1}');

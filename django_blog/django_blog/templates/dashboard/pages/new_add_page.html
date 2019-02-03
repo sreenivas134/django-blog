@@ -81,6 +81,10 @@
 <script type="text/javascript">
 CKEDITOR.config.allowedContent = true;
   var editor = CKEDITOR.replace('content', {
+    filebrowserUploadUrl: '{% url "upload_photos" %}',
+    filebrowserBrowseUrl: '{% url "recent_photos" %}',
+    filebrowserImageBrowseUrl: '{% url "recent_photos" %}?type=Images',
+    filebrowserImageUploadUrl: '{% url "upload_photos" %}?type=Images',
     uiColor: '#ffffff',
     height:260,
   });

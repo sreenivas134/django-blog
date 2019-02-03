@@ -223,6 +223,7 @@ class Page(models.Model):
     meta_description = models.TextField()
     keywords = models.TextField()
     meta_title = models.TextField()
+    is_home = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-id']
@@ -235,6 +236,10 @@ class Page(models.Model):
                 self.slug = create_slug(tempslug)
         else:
             self.slug = create_slug(tempslug)
+
+        # if is_home is true update all other rows to 0
+        if self.is_home:
+            Page.objects.all().update(is_home=0)
 
         super(Page, self).save(*args, **kwargs)
 
