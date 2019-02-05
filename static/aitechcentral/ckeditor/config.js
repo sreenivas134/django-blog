@@ -10,7 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// config.language = 'en';
 	config.defaultLanguage = 'en';
-	config.extraPlugins = 'textindent,div,dialogadvtab,tableresize,colordialog,backgrounds';
+	config.extraPlugins = 'textindent,div,dialogadvtab,tableresize,colordialog,backgrounds,basewidget';
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [

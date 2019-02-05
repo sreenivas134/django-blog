@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 class UserForm(forms.ModelForm):
     password = forms.CharField(required=False, widget=forms.PasswordInput)
     role = forms.ChoiceField(choices=ROLE_CHOICE, required=True)
+    # avatar = forms.ImageField()
 
     class Meta:
         model = User
@@ -118,6 +119,7 @@ class BlogCategoryForm(forms.ModelForm):
 
 class UserRoleForm(forms.Form):
     role = forms.CharField(max_length=10)
+    avtar = forms.ImageField()
 
 
 class PageForm(forms.ModelForm):
