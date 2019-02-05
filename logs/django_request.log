@@ -167,3 +167,13 @@ AttributeError: 'WSGIRequest' object has no attribute 'files'
 2019-02-06 00:29:12,628 [WARNING] django.request: Not Found: /static/css/main.css.map
 2019-02-06 00:29:43,710 [WARNING] django.request: Not Found: /static/css/main.css.map
 2019-02-06 00:30:42,598 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:41:16,594 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:41:39,465 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:45:30,654 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:45:55,932 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:45:56,368 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:45:56,768 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:45:57,691 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:45:58,175 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:46:11,410 [WARNING] django.request: Not Found: /static/css/main.css.map
+2019-02-06 00:46:55,426 [WARNING] django.request: Not Found: /static/css/main.css.map

@@ -110,6 +110,6 @@ urlpatterns = [
     url(r'^category/(?P<category_slug>[-\w]+)/$', SelectedCategoryView.as_view(), name='selected_category'),
     url(r'^tags/(?P<tag_slug>[-\w]+)/$', SelectedTagView.as_view(), name='selected_tag'),
     url(r'^archive/(?P<year>\w{0,})/(?P<month>\w{0,})/$', ArchiveView.as_view(), name='archive_posts'),
-    url(r'^(?P<blog_slug>[-\w]+)/$', BlogPostView.as_view(), name='blog_post_view'),
+    url(r'^blog/(?P<blog_slug>[-\w]+)/$', BlogPostView.as_view(), name='blog_post_view'),
 
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
