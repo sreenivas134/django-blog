@@ -32,7 +32,7 @@
             <div class="blog_detail_content">
               <div class="blog_heading">
                 <span class="head_line"></span>
-                  <span class="heading">{{ blog_name.updated_on|date:"F d, Y" }}</span>
+                  <span class="heading">{{ blog_name.published_on|date:"F d, Y" }}</span>
                     </div>
                     <div class="blog_title" itemprop="blog-article">
                       <a href="{% url 'blog_post_view' blog_slug=blog_name.slug %}" itemprop="name headline">{{ blog_name.title }}</a>
@@ -121,7 +121,7 @@
                         <div class="col-md-4">
                           <div class="blog_block">
                            <div class="blog_date">
-                              {{ post.updated_on|date:"F d, Y" }}
+                              {{ post.published_on|date:"F d, Y" }}
                             </div>
                             <div class="blog_title">
                                <a href="{% url 'blog_post_view' blog_slug=post.slug %}">{{ post.title }}</a>

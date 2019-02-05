@@ -6,3 +6,4 @@ media/*
 *.pyc
 .idea/*
 .DS_Store
+logs/*

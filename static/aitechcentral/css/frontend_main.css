@@ -37,6 +37,10 @@ body {
 a:hover {
   text-decoration: none; }
 
+.breadcrumb {
+    font-size: 14px;
+    }
+
 header .navbar-default {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cb1312+0,f43e28+100 */
   background: #00e3a0;

@@ -66,7 +66,7 @@ class BlogPostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        exclude = ('slug', 'user', 'tags')
+        exclude = ('slug', 'user', 'tags', 'published_on')
 
     def __init__(self, *args, **kwargs):
         self.user_role = kwargs.pop('user_role', None)

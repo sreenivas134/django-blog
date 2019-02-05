@@ -12,7 +12,7 @@ from django.contrib.auth import logout, authenticate, login, load_backend
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files import File
-from django import forms
+import datetime
 from django.forms import inlineformset_factory
 from .models import Menu, Post, PostHistory, Category, Tags, Image_File, \
     STATUS_CHOICE, ROLE_CHOICE, UserRole, Page, Theme, Google, Facebook, \
@@ -385,7 +385,7 @@ class BlogPostBulkActionsView(AuthorNotAllowedMixin, View):
         if 'blog_ids[]' in request.GET:
             blog_posts = Post.objects.filter(id__in=request.GET.getlist('blog_ids[]'))
             if request.GET.get('action') in [status[0] for status in STATUS_CHOICE]:
-                blog_posts.update(status=request.GET.get('action'))
+                blog_posts.update(status=request.GET.get('action'), published_on=datetime.date.today())
                 messages.success(request, "successfully updated status to " + request.GET.get('action'))
             elif request.GET.get('action') == 'Delete':
                 PostHistory.objects.filter(post__in=blog_posts).delete()

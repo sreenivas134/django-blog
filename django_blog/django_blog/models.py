@@ -104,6 +104,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateField(auto_now=True)
+    published_on = models.DateField(auto_now_add=True, blank=True, null=True)
     meta_description = models.TextField(max_length=160, null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
@@ -112,6 +113,10 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICE, default='Drafted')
     keywords = models.TextField(max_length=500, blank=True)
     featured_image = models.ImageField(upload_to='uploads/%Y-%m-%d', blank=True, null=True)
+
+    def __init__(self, *args, **kwargs):
+        super(Post, self).__init__(*args, **kwargs)
+        self.old_status = self.status
 
     class Meta:
         ordering = ['-updated_on']
@@ -126,7 +131,15 @@ class Post(models.Model):
             self.slug = create_slug(tempslug)
             self.email_to_admins_on_post_create()
 
+        if self.old_status != self.status and self.status == 'Published':
+            self.published_on = datetime.date.today()
         super(Post, self).save(*args, **kwargs)
+
+    def update(self, *args, **kwargs):
+        print args, kwargs
+        if self.old_status != self.status and self.status == 'Published':
+            self.published_on = datetime.date.today()
+        super(Post, self).update(*args, **kwargs)
 
     def __str__(self):
         return self.title

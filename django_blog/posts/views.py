@@ -22,7 +22,7 @@ def categories_tags_lists():
     categories_list = Category.objects.filter(is_active=True, post__status='Published').distinct()
     tags_list = Tags.objects.annotate(
         Num=Count('rel_posts')).filter(Num__gt=0, rel_posts__status='Published', rel_posts__category__is_active=True)[:20]
-    posts = Post.objects.filter(status='Published').order_by('-updated_on')[0:3]
+    posts = Post.objects.filter(status='Published').order_by('-published_on')[0:3]
     return {'categories_list': categories_list, 'tags_list': tags_list, 'recent_posts': posts}
 
 
@@ -57,7 +57,7 @@ class Home(ListView):
 
         if not self.page:
             self.template_name = "posts/new_index.html"
-            self.queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-updated_on')
+            self.queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-published_on')
             self.context_object_name = "blog_posts"
 
         if self.page:
@@ -86,7 +86,7 @@ class Home(ListView):
 
 class Home1(ListView):
     template_name = "posts/new_index.html"
-    queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-updated_on')
+    queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-published_on')
     context_object_name = "blog_posts"
 
     def get_context_data(self, *args, **kwargs):
@@ -109,7 +109,7 @@ class Home1(ListView):
 
 class PostView(ListView):
     template_name = "posts/new_index.html"
-    queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-updated_on')
+    queryset = Post.objects.filter(status='Published', category__is_active=True).order_by('-published_on')
     context_object_name = "blog_posts"
 
     def get_context_data(self, *args, **kwargs):
@@ -230,7 +230,7 @@ class ArchiveView(ListView):
         month = self.kwargs.get("month")
         self.date = datetime(int(year), int(month), 1)
         return Post.objects.filter(
-            category__is_active=True, status="Published", updated_on__year=year, updated_on__month=month).order_by('-updated_on')
+            category__is_active=True, status="Published", published_on__year=year, published_on__month=month).order_by('-published_on')
 
     def get_context_data(self, *args, **kwargs):
         context = super(ArchiveView, self).get_context_data(*args, **kwargs)
