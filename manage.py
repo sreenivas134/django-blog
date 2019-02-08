@@ -21,3 +21,4 @@ if __name__ == "__main__":
         raise
     args = ['manage.py', 'runserver', '0.0.0.0:80']
     execute_from_command_line(args)
+    # execute_from_command_line(sys.argv)

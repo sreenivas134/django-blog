@@ -331,3 +331,30 @@ class Facebook(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class UrlHit(models.Model):
+    url = models.URLField()
+    hits = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return str(self.url)
+
+    def increase(self):
+        self.hits += 1
+        self.save()
+
+    class Meta:
+        db_table = 'url_hit'
+
+
+class HitCount(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
+    url_hit = models.ForeignKey(UrlHit, editable=False, on_delete=models.CASCADE)
+    ip = models.CharField(max_length=40)
+    session = models.CharField(max_length=40)
+    user_agent = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'hit_count'
