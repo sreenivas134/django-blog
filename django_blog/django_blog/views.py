@@ -19,14 +19,16 @@ from .models import Menu, Post, PostHistory, Category, Tags, Image_File, \
     Post_Slugs
 from .forms import *
 from django.conf import settings
+
 try:
     from django.contrib.auth import get_user_model
+
     User = get_user_model()
 except ImportError:
     from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, DeleteView,\
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, \
     UpdateView, FormView, TemplateView, View
 from django.views.generic.edit import ProcessFormView
 from .mixins import AdminMixin, PostAccessRequiredMixin, AdminOnlyMixin, AuthorNotAllowedMixin
@@ -45,7 +47,7 @@ class AdminLoginView(FormView):
     form_class = AdminLoginForm
 
     def dispatch(self, request, *args, **kwargs):
-        if(request.user.is_authenticated and request.user.is_active):
+        if (request.user.is_authenticated and request.user.is_active):
             return HttpResponseRedirect(reverse_lazy("blog"))
         return super(AdminLoginView, self).dispatch(request, *args, **kwargs)
 
@@ -201,7 +203,8 @@ class PostEditView(AdminMixin, UpdateView):
 
     def form_valid(self, form):
         formset = inlineformset_factory(
-            Post, Post_Slugs, can_delete=True, extra=3, fields=('slug', 'is_active'), formset=CustomBlogSlugInlineFormSet)
+            Post, Post_Slugs, can_delete=True, extra=3, fields=('slug', 'is_active'),
+            formset=CustomBlogSlugInlineFormSet)
         formset = formset(self.request.POST, instance=self.get_object())
         if not formset.is_valid():
             return JsonResponse({'error': True, "response": formset.errors})
@@ -953,8 +956,9 @@ class ThemesBulkActionsView(AdminOnlyMixin, View):
                 messages.success(request, "Selected Theme's successfully deleted!")
             return JsonResponse({'response': True})
         else:
-            messages.warning(request,'Please select at-least one record to perform this action')
+            messages.warning(request, 'Please select at-least one record to perform this action')
             return JsonResponse({'response': False})
+
 
 # social login
 def google_login(request):
@@ -1033,18 +1037,20 @@ def google_login(request):
         return HttpResponseRedirect(reverse_lazy('blog'))
 
     else:
-        rty = "https://accounts.google.com/o/oauth2/auth?client_id=" + os.getenv("GP_CLIENT_ID")\
+        rty = "https://accounts.google.com/o/oauth2/auth?client_id=" + os.getenv("GP_CLIENT_ID") \
               + "&response_type=code"
         rty += "&scope=https://www.googleapis.com/auth/userinfo.profile \
-               https://www.googleapis.com/auth/userinfo.email&redirect_uri=" + request.scheme\
-               + "://" + request.META['HTTP_HOST'] + reverse('google_login')\
+               https://www.googleapis.com/auth/userinfo.email&redirect_uri=" + request.scheme \
+               + "://" + request.META['HTTP_HOST'] + reverse('google_login') \
                + "&state=1235dfghjkf123"
         return HttpResponseRedirect(rty)
 
 
 def facebook_login(request):
     if 'code' in request.GET:
-        accesstoken = get_access_token_from_code(request.GET['code'], 'https://' + request.META['HTTP_HOST'] + reverse('facebook_login'), os.getenv("FB_APP_ID"), os.getenv("FB_SECRET"))
+        accesstoken = get_access_token_from_code(request.GET['code'],
+                                                 'https://' + request.META['HTTP_HOST'] + reverse('facebook_login'),
+                                                 os.getenv("FB_APP_ID"), os.getenv("FB_SECRET"))
         if 'error' in accesstoken.keys():
             messages.error(request, "Sorry, Your session has been expired")
             return render(request, '404.html')
@@ -1052,7 +1058,8 @@ def facebook_login(request):
         accesstoken = graph.extend_access_token(os.getenv("FB_APP_ID"), os.getenv("FB_SECRET"))['accesstoken']
         hometown = profile['hometown']['name'] if 'hometown' in profile.keys() else ''
         location = profile['location']['name'] if 'location' in profile.keys() else ''
-        bday = datetime.strptime(profile['birthday'], '%m/%d/%Y').strftime('%Y-%m-%d') if 'birthday' in profile.keys() else '1970-09-09'
+        bday = datetime.strptime(profile['birthday'], '%m/%d/%Y').strftime(
+            '%Y-%m-%d') if 'birthday' in profile.keys() else '1970-09-09'
 
         if 'email' in profile.keys():
             user, created = User.objects.get_or_create(
@@ -1120,7 +1127,9 @@ def facebook_login(request):
     elif 'error' in request.GET:
         print(request.GET)
     else:
-        rty = "https://graph.facebook.com/oauth/authorize?client_id=" + os.getenv("FB_APP_ID") + "&redirect_uri=" + 'https://' + request.META['HTTP_HOST'] + reverse('facebook_login') + "&scope=manage_pages,read_stream, user_about_me, user_birthday, user_location, user_work_history, user_hometown, user_website, email, user_likes, user_groups"
+        rty = "https://graph.facebook.com/oauth/authorize?client_id=" + os.getenv(
+            "FB_APP_ID") + "&redirect_uri=" + 'https://' + request.META['HTTP_HOST'] + reverse(
+            'facebook_login') + "&scope=manage_pages,read_stream, user_about_me, user_birthday, user_location, user_work_history, user_hometown, user_website, email, user_likes, user_groups"
         return HttpResponseRedirect(rty)
 
 

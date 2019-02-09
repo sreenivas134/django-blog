@@ -23,6 +23,15 @@
   </head>
   <body class="{% block body_block %}{% endblock body_block %}">
     <div id="wrapper">
+      {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible my_alert" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{% if message.tags %}{{ message.tags|title }} !{% endif %}</strong> {{ message }}.
+          </div>
+          {% endfor %}
+      {% endif %}
+
       {% block main_content %}
         {% if request.user.is_active %}
         {% block menu_block %}
@@ -75,14 +84,6 @@
           </header>
           {% endblock %}
           {% endif %}
-            {% if messages %}
-              {% for message in messages %}
-              <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible my_alert" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>{% if message.tags %}{{ message.tags|title }} !{% endif %}</strong> {{ message }}.
-              </div>
-              {% endfor %}
-            {% endif %}
             <div class="main_container">
               <div class="row no_row_margin">
               {% block content %}
