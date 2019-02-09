@@ -1,4 +1,3 @@
-from django.conf import settings
 from django_blog.django_blog.models import HitCount, UrlHit
 from django.db import transaction
 

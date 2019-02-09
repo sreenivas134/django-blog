@@ -989,14 +989,17 @@ def google_login(request):
             user.dob = dob
             user.save()
         else:
-            user = User.objects.create(
-                username=user_document['email'],
-                email=user_document['email'],
-                first_name=user_document['name'],
-                last_name=user_document['family_name'],
-            )
-            user.set_password(uuid.uuid4())
-        user.save()
+            # Bypassing the Google Sign-Up
+            messages.error(request, "Sorry, We couldn't find your E-mail Id!")
+            return render(request, '404.html')
+            # user = User.objects.create(
+            #     username=user_document['email'],
+            #     email=user_document['email'],
+            #     first_name=user_document['name'],
+            #     last_name=user_document['family_name'],
+            # )
+            # user.set_password(uuid.uuid4())
+            # user.save()
         google, created = Google.objects.get_or_create(user=user)
         google.user = user
         google.google_url = link
@@ -1111,7 +1114,7 @@ def facebook_login(request):
             messages.success(request, "Loggedin successfully")
             return HttpResponseRedirect(reverse_lazy('blog'))
         else:
-            message.error(request, "Sorry, We didnt find your email id through facebook")
+            messages.error(request, "Sorry, We didnt find your email id through facebook")
             return render(request, '404.html')
     elif 'error' in request.GET:
         print(request.GET)
