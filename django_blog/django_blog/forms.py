@@ -66,7 +66,7 @@ class BlogPostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        exclude = ('slug', 'user', 'tags', 'published_on')
+        exclude = ('user', 'tags', 'published_on')
 
     def __init__(self, *args, **kwargs):
         self.user_role = kwargs.pop('user_role', None)
@@ -74,6 +74,9 @@ class BlogPostForm(forms.ModelForm):
 
         if self.user_role == 'Author':
             del self.fields['status']
+
+        if self.instance.status == 'Published':
+            self.fields['slug'].widget.attrs['readonly'] = True
 
         for field in iter(self.fields):
             if field == 'tags':

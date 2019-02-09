@@ -102,18 +102,18 @@ def create_tag_slug(tempslug):
 
 class Post(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=100, unique=True)
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateField(auto_now=True)
-    published_on = models.DateField(auto_now_add=True, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     meta_description = models.TextField(max_length=160, null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    content = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tags, related_name='rel_posts')
     status = models.CharField(max_length=10, choices=STATUS_CHOICE, default='Drafted')
     keywords = models.TextField(max_length=500, blank=True)
     featured_image = models.ImageField(upload_to='uploads/%Y-%m-%d', blank=True, null=True)
+    slug = models.SlugField(max_length=100, unique=True)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateField(auto_now=True)
+    published_on = models.DateField(auto_now_add=True, blank=True, null=True)
 
     def __init__(self, *args, **kwargs):
         super(Post, self).__init__(*args, **kwargs)

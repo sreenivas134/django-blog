@@ -127,9 +127,10 @@ class PostCreateView(AdminMixin, CreateView):
 
     def form_valid(self, form):
         self.blog_post = form.save(commit=False)
-        formset = inlineformset_factory(
-            Post, Post_Slugs, can_delete=True, extra=3, fields=('slug', 'is_active'),
-            formset=CustomBlogSlugInlineFormSet)
+        # formset = inlineformset_factory(
+        #     Post, Post_Slugs, can_delete=True, extra=0, fields=('slug', 'is_active'),
+        #     formset=CustomBlogSlugInlineFormSet)
+        formset = self.form_class
         formset = formset(self.request.POST, instance=self.blog_post)
         if not formset.is_valid():
             return JsonResponse({'error': True, "response": formset.errors})
@@ -150,8 +151,8 @@ class PostCreateView(AdminMixin, CreateView):
                 self.blog_post.tags.add(blog_tag)
 
         self.blog_post.create_activity(user=self.request.user, content="added")
-        messages.success(self.request, 'Successfully posted your blog')
-        data = {'error': False, 'response': 'Successfully posted your blog',
+        messages.success(self.request, 'Successfully saved your post')
+        data = {'error': False, 'response': 'Successfully saved your post',
                 'title': self.request.POST['title']}
         return JsonResponse(data)
 
@@ -166,11 +167,11 @@ class PostCreateView(AdminMixin, CreateView):
         context['categories_list'] = categories_list
         context['tags_list'] = tags_list
         context['add_blog'] = True
-        self.formset = inlineformset_factory(
-            Post, Post_Slugs, can_delete=True, extra=3, fields=('slug', 'is_active'),
-            formset=CustomBlogSlugInlineFormSet,
-            widgets={'slug': forms.TextInput(attrs={'class': 'form-control'})})
-        context['formset'] = self.formset()
+        # self.formset = inlineformset_factory(
+        #     Post, Post_Slugs, can_delete=True, extra=0, fields=('slug', 'is_active'),
+        #     formset=CustomBlogSlugInlineFormSet,
+        #     widgets={'slug': forms.TextInput(attrs={'class': 'form-control'})})
+        context['formset'] = self.form_class
         return context
 
 
@@ -202,14 +203,13 @@ class PostEditView(AdminMixin, UpdateView):
         return JsonResponse({'error': True, 'response': form.errors})
 
     def form_valid(self, form):
-        formset = inlineformset_factory(
-            Post, Post_Slugs, can_delete=True, extra=3, fields=('slug', 'is_active'),
-            formset=CustomBlogSlugInlineFormSet)
-        formset = formset(self.request.POST, instance=self.get_object())
-        if not formset.is_valid():
-            return JsonResponse({'error': True, "response": formset.errors})
-        else:
-            formset.save()
+        # formset = inlineformset_factory(
+        #     Post)
+        # formset = formset(self.request.POST, instance=self.get_object())
+        # if not formset.is_valid():
+        #     return JsonResponse({'error': True, "response": formset.errors})
+        # else:
+        #     formset.save()
         previous_status = self.get_object().status
         previous_content = self.get_object().content
         self.blog_post = form.save(commit=False)
@@ -254,11 +254,7 @@ class PostEditView(AdminMixin, UpdateView):
         context['categories_list'] = categories_list
         context['history_list'] = self.get_object().history.all()
         context['tags_list'] = self.get_object().tags.all()
-        self.formset = inlineformset_factory(
-            Post, Post_Slugs, can_delete=True, extra=0, fields=('slug', 'is_active'),
-            formset=CustomBlogSlugInlineFormSet,
-            widgets={'slug': forms.TextInput(attrs={'class': 'form-control'})})
-        context['formset'] = self.formset(instance=self.get_object())
+        context['formset'] = self.form_class(instance=self.get_object())
         return context
 
 

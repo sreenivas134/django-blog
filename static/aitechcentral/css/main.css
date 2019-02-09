@@ -318,3 +318,7 @@ header .navbar .navbar-header .navbar-brand {
 .login_error_required {
   color: white;
 }
+
+.buttons_row {
+    margin: 20px;
+    }
