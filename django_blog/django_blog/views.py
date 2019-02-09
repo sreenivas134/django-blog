@@ -990,8 +990,9 @@ def google_login(request):
             user.save()
         else:
             # Bypassing the Google Sign-Up
-            data = {'error': True, 'response': "Sorry, We couldn't find your E-mail Id!"}
-            return JsonResponse(data)
+            messages.error(request, "Sorry, We couldn't find your E-mail Id!")
+            return render(request, 'new_admin-login.html')
+
             # user = User.objects.create(
             #     username=user_document['email'],
             #     email=user_document['email'],
