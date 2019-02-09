@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 ROLE_CHOICE = (
     ('Admin', 'Admin'),
@@ -190,6 +191,9 @@ class Post(models.Model):
         active_slug.is_active = True
         active_slug.save()
 
+    def get_absolute_url(self):
+        return reverse('blog_post_view', args=[self.slug])
+
 
 def create_slug(tempslug):
     slugcount = 0
@@ -244,6 +248,7 @@ class Page(models.Model):
     keywords = models.TextField()
     meta_title = models.TextField()
     is_home = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-id']
@@ -265,6 +270,9 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('page_view', args=[self.slug])
 
 
 class Menu(models.Model):
