@@ -3,14 +3,7 @@
     {% block title %}Login{% endblock title %}
     {% block body_block %}login_body{% endblock body_block %}
     {% block main_content %}
-        {% if messages %}
-          {% for message in messages %}
-              <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible my_alert" role="alert" style="color:#ba6767;text-align: center;">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>{% if message.tags %}{{ message.tags|title }} !{% endif %}</strong> {{ message }}.
-              </div>
-          {% endfor %}
-        {% endif %}
+
         <!-- welcome meassge ends here -->
         <!-- Description starts here -->
         <div class="row no_row_margin login_block">

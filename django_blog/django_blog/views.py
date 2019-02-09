@@ -991,7 +991,7 @@ def google_login(request):
         else:
             # Bypassing the Google Sign-Up
             messages.error(request, "Sorry, We couldn't find your E-mail Id!")
-            return render(request, 'dashboard/new_admin-login.html')
+            return HttpResponseRedirect(reverse('admin_login'))
 
             # user = User.objects.create(
             #     username=user_document['email'],
