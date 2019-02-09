@@ -66,7 +66,9 @@ header .navbar-default {
     letter-spacing: 1px;
     font-size: 18px; }
   header .navbar-default .navbar-collapse .navbar-form {
-    border: none; }
+    border: none;
+
+    }
     header .navbar-default .navbar-collapse .navbar-form .form-group .form-control {
       border: none;
       border-radius: 0;
@@ -774,3 +776,24 @@ header .navbar-default {
             color: #00a97a; }
 
 /*# sourceMappingURL=main.css.map */
+
+
+.ui-autocomplete {
+    display:block;
+    z-index: 1040;
+    right: 0;
+    left: auto;
+}
+
+.ui-autocomplete li {
+    // This is for when there are sub-categories.
+    border: 1px solid #333;
+    margin: 5px 0px 5px 0px;
+    list-style:none;
+    padding:10px 5px 10px 5px;
+    cursor: pointer;
+}
+
+.navbar-form .form-group{
+    margin-right: 100px;
+}

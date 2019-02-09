@@ -4,6 +4,7 @@ from PIL import Image
 import os
 import requests
 from django.db.models.aggregates import Max
+from django.db.models import Q
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.contrib import messages
@@ -1145,3 +1146,25 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
 
     def form_invalid(self, form):
         return JsonResponse({"error": True, "errors": form.errors})
+
+
+def search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        criterion1 = Q(title__icontains=q)
+        criterion2 = Q(meta_description__icontains=q)
+        criterion3 = Q(status='Published')
+        posts = Post.objects.filter((criterion1 or criterion2) & criterion3)[:20]
+        results = []
+        for post in posts:
+            post_json = {}
+            post_json['id'] = post.id
+            post_json['value'] = post.title
+            post_json['meta_desc'] = post.meta_description
+            post_json['href'] = post.get_absolute_url()
+            results.append(post_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

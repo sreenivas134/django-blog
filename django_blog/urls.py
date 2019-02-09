@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^tags/(?P<tag_slug>[-\w]+)/$', SelectedTagView.as_view(), name='selected_tag'),
     url(r'^archive/(?P<year>\w{0,})/(?P<month>\w{0,})/$', ArchiveView.as_view(), name='archive_posts'),
     url(r'^blog/(?P<blog_slug>[-\w]+)/$', BlogPostView.as_view(), name='blog_post_view'),
+    url(r'^search-auto-complete/$', search_auto, name='search-auto-complete'),
 
     url(r'^dashboard/$', AdminLoginView.as_view(), name='admin_login'),
     url(r'^dashboard/gplus/$', google_login, name='google_login'),
