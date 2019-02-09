@@ -962,6 +962,8 @@ class ThemesBulkActionsView(AdminOnlyMixin, View):
 
 # social login
 def google_login(request):
+    messages.info(request, "Sorry, We couldn't find your E-mail Id!")
+    return HttpResponseRedirect(reverse('admin_login'))
     if 'code' in request.GET:
         params = {
             'grant_type': 'authorization_code',
@@ -994,7 +996,7 @@ def google_login(request):
             user.save()
         else:
             # Bypassing the Google Sign-Up
-            messages.error(request, "Sorry, We couldn't find your E-mail Id!")
+            messages.info(request, "Sorry, We couldn't find your E-mail Id!")
             return HttpResponseRedirect(reverse('admin_login'))
 
             # user = User.objects.create(
