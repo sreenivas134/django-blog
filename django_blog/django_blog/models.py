@@ -129,7 +129,8 @@ class Post(models.Model):
             if blogpost.title != self.title:
                 self.slug = create_slug(tempslug)
         else:
-            self.slug = create_slug(tempslug)
+            if not self.slug:
+                self.slug = create_slug(tempslug)
             self.email_to_admins_on_post_create()
 
         if self.old_status != self.status and self.status == 'Published':

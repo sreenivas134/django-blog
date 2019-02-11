@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     
-    'simple_pagination',
+    # 'simple_pagination',
     'django_blog.django_blog',
 ]
 

@@ -1,6 +1,5 @@
 {% extends 'dashboard/new_base.html' %}
 {% load blog_tags %}
-{% load paginate %}
     {% block title %}Posts{% endblock %}
     {% block extra_css %}
     <style type="text/css">
@@ -57,9 +56,7 @@
         {% if blog_list %}
             <div class="row no_row_margin table_row">
               <div class="container-fluid">
-                {% paginate 5 blog_list %}
-                {% show_pageitems %}
-            {% with request.user.userrole_set.last as user_role %}
+                {% with request.user.userrole_set.last as user_role %}
                 <table class="table table-bordered table-striped" id="my_table">
                     <thead>
                         <tr>
@@ -128,7 +125,27 @@
 
             <!-- pagination -->
               <div class="pagination_wrap text-center">
-                  {% show_pages %}
+                  {% if is_paginated %}
+                      <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                          <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in paginator.page_range %}
+                          {% if page_obj.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                          {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                          <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                          <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                      </ul>
+                  {% endif %}
               </div>
             <!--/ pagination -->
             {% else %}
@@ -205,12 +222,12 @@
             }, 'json');
         })
 
-        $('.pagination li a').click(function(event){
-            event.preventDefault();
-            console.log($(this).attr('href'));
-            $('#blogs_data').attr('action', $(this).attr('href'));
-            $('#blogs_data').submit();
-        });
+        <!--$('.pagination li a').click(function(event){-->
+            <!--event.preventDefault();-->
+            <!--console.log($(this).attr('href'));-->
+            <!--$('#blogs_data').attr('action', $(this).attr('href'));-->
+            <!--$('#blogs_data').submit();-->
+        <!--});-->
         </script>
 
     {% endblock %}

@@ -43,5 +43,8 @@ class HitCountMiddleWare(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        hit_count(request)
+        try:
+            hit_count(request)
+        except:
+            pass
         return self.get_response(request)

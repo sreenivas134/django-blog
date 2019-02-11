@@ -1,5 +1,4 @@
 {% extends 'dashboard/new_base.html' %}
-{% load paginate %}
 {% load blog_tags %}
 {% load recurse %}
 
@@ -54,8 +53,6 @@
     {% if menu_list %}
         <div class="row no_row_margin table_row">
           <div class="container-fluid">
-            {% paginate 5 menu_list %}
-            {% show_pageitems %}
             <table class="table table-bordered table-striped" id="my_table">
                 <thead>
                     <tr>
@@ -103,7 +100,7 @@
 
         <!-- pagination -->
           <div class="pagination_wrap text-center">
-              {% show_pages %}
+
           </div>
         <!--/ pagination -->
         {% else %}
@@ -144,10 +141,5 @@
             }, 'json');
         })
 
-        // $('.pagination li a').click(function(event){
-        //     event.preventDefault();
-        //     $('#menus_data').attr('action', $(this).attr('href'));
-        //     $('#menus_data').submit();
-        // });
     </script>
 {% endblock %}

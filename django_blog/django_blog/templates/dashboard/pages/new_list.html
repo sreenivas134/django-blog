@@ -1,5 +1,4 @@
 {% extends 'dashboard/new_base.html' %}
-{% load paginate %}
 {% load blog_tags %}
 {% block title %}Pages{% endblock %}
 {% block extra_css %}
@@ -52,8 +51,6 @@
   {% if pages_list %}
     <div class="row no_row_margin table_row">
       <div class="container-fluid">
-      {% paginate 5 pages_list %}
-      {% show_pageitems %}
       <table class="table table-bordered table-striped" id="my_table">
         <thead>
           <tr>
@@ -93,7 +90,7 @@
       <!-- end div of table -->
       <!-- pagination -->
       <div class="pagination_wrap text-center">
-        {% show_pages %}
+
       </div>
       <!--/ pagination -->
       {% else %}

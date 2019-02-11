@@ -75,6 +75,7 @@ class BlogPostForm(forms.ModelForm):
         if self.user_role == 'Author':
             del self.fields['status']
 
+        self.fields['slug'].required = False
         if self.instance.status == 'Published':
             self.fields['slug'].widget.attrs['readonly'] = True
 

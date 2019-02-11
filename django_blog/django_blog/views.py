@@ -78,6 +78,7 @@ def admin_logout(request):
 
 class PostList(AdminMixin, ListView):
     model = Post
+    paginate_by = 5
     template_name = 'dashboard/blog/new_blog_list.html'
     context_object_name = 'blog_list'
 

@@ -1,5 +1,4 @@
 {% extends 'dashboard/new_base.html' %}
-{% load paginate %}
 {% load blog_tags %}
 {% block title %}Users{% endblock %}
 {% block extra_css %}
@@ -52,8 +51,6 @@
   {% if users_list %}
   <div class="row no_row_margin table_row">
     <div class="container-fluid">
-    {% paginate 5 users_list %}
-    {% show_pageitems %}
     {% with request.user.userrole_set.last as user_role %}
       <table class="table table-bordered table-hover" id="my_table">
         <thead>
@@ -104,7 +101,7 @@
       <!-- end div of table -->
       <!-- pagination -->
       <div class="pagination_wrap text-center">
-        {% show_pages %}
+
       </div>
       <!--/ pagination -->
     </div>
@@ -143,10 +140,5 @@
       }, 'json');
   })
 
-  // $('.pagination li a').click(function(event){
-  //     event.preventDefault();
-  //     $('#users_data').attr('action', $(this).attr('href'));
-  //     $('#users_data').submit();
-  // });
 </script>
 {% endblock %}

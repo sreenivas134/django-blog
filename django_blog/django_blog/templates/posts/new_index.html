@@ -1,5 +1,4 @@
 {% extends 'posts/new_base.html' %}
-{% load paginate %}
 {% load blog_tags %}
     {% block blog_content %}
 
@@ -8,7 +7,6 @@
             <div class="blogs">
                 <ul class="blog-list">
                     {% if blog_posts %}
-                        {% paginate 5 blog_posts %}
                         {% for blog in blog_posts %}
                             <li class="list-item">
                                 <div class="blog-left">
@@ -90,7 +88,6 @@
         <!-- blog_list_container starts here -->
             <div class="blog_list_container" itemscope itemtype='https://schema.org/blogPosts'>
                 {% if blog_posts %}
-                    {% paginate 5 blog_posts %}
                     {% for blog in blog_posts %}
                         <!-- blog_container starts here -->
                         <div class="blog_container" itemprop="liveBlogUpdate" itemscope itemtype="http://schema.org/BlogPosting">
@@ -134,7 +131,7 @@
                     {% endfor %}
                     <!-- pagination -->
                         <div class="pagination_wrap">
-                            {% show_pages %}
+
                         </div>
                     <!--/ pagination -->
                 {% else %}
