@@ -633,6 +633,10 @@ header .navbar-default {
           background-color: #b31217; }
         .main_container .middle_container .social_block .social_connections li a.google {
           background-color: #F44336; }
+        .main_container .middle_container .social_block .social_connections li a.linkedin {
+          background-color: #0073b1; }
+        .main_container .middle_container .social_block .social_connections li a.whatsapp {
+          background-color: #00a97a; }
         .main_container .middle_container .social_block .social_connections li a i {
           margin-right: 6px; }
 .main_container .middle_container .main_right_container .recent_posts_container .panel {
