@@ -126,7 +126,7 @@ class Post(models.Model):
         tempslug = slugify(self.title)
         if self.id:
             blogpost = Post.objects.get(pk=self.id)
-            if blogpost.title != self.title:
+            if blogpost.title != self.title and self.status != 'Published':
                 self.slug = create_slug(tempslug)
         else:
             if not self.slug:
@@ -138,7 +138,6 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     def update(self, *args, **kwargs):
-        print args, kwargs
         if self.old_status != self.status and self.status == 'Published':
             self.published_on = datetime.date.today()
         super(Post, self).update(*args, **kwargs)
