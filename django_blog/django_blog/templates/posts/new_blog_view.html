@@ -125,8 +125,8 @@
                         <ul>
                           {% for post in related_posts %}
                             <!-- recent_blog starts here -->
-                            <li class="col-md-6">
-                            <div>
+                            <div class="col-md-6">
+                            <li>
                               <div class="blog_block">
     <!--                           <div class="blog_date">-->
     <!--                              {{ post.published_on|date:"F d, Y" }}-->
@@ -143,8 +143,8 @@
     <!--                              {{ post.content|safe|truncatewords_html:20  }}-->
     <!--                            </div>-->
                               </div>
-                            </div>
                             </li>
+                            </div>
                             <!-- recent blog ends here -->
                           {% endfor %}
                         </ul>
