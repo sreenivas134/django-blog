@@ -90,7 +90,7 @@
                 {% if blog_posts %}
                     {% for blog in blog_posts %}
                         <!-- blog_container starts here -->
-                        <div class="blog_container" itemprop="liveBlogUpdate" itemscope itemtype="http://schema.org/BlogPosting">
+                        <div class="blog_container col-md-12" itemprop="liveBlogUpdate" itemscope itemtype="http://schema.org/BlogPosting">
                             <div class="share_more">
                                <span class="share">
                                   <ul class="list-inline">
@@ -102,8 +102,10 @@
                                 <span class="more"><a href="{% url 'blog_post_view' blog_slug=blog.slug %}">Continue Reading</a></span>
                             </div>
                             {% if blog.featured_image %}
+                                <div class="col-md-4" style="height:100% !important; padding-top: 25px; padding-left: 25px;">
                                 <div class="blog_img">
                                   <img src="{{ blog.featured_image.url }}" />
+                                </div>
                                 </div>
                             {% endif %}
                             <div class="blog_content_container">
