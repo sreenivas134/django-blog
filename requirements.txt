@@ -1,6 +1,6 @@
 boto==2.40.0
 dj-database-url==0.4.1
-Django==1.11.1
+Django==1.11.28
 django-crispy-forms==1.4.0
 -e git://github.com/thornomad/django-hitcount.git@e58726158d785a4ce9898767518257052fff9c3f#egg=django_hitcount
 django-hitcounter==0.1.1
