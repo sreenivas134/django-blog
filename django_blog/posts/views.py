@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 import json
 from datetime import datetime
@@ -19,10 +20,12 @@ from django_blog.django_blog.models import ContactUsSettings, Post_Slugs
 
 
 def categories_tags_lists():
-    categories_list = Category.objects.filter(is_active=True, post__status='Published').distinct()
+    categories_list = Category.objects.filter(is_active=True, post__status='Published').distinct()[:10]
     tags_list = Tags.objects.annotate(
-        Num=Count('rel_posts')).filter(Num__gt=0, rel_posts__status='Published', rel_posts__category__is_active=True)[:20]
-    posts = Post.objects.filter(status='Published').order_by('-published_on')[0:3]
+        Num=Count('rel_posts')).filter(Num__gt=0, rel_posts__status='Published',
+                                       rel_posts__category__is_active=True)[:20]
+
+    posts = Post.objects.filter(status='Published').order_by('-published_on')[0:10]
     return {'categories_list': categories_list, 'tags_list': tags_list, 'recent_posts': posts}
 
 
@@ -161,7 +164,7 @@ class BlogPostView(DetailView):
             status='Published',
             category=self.object.category,
             tags__in=self.object.tags.all()
-        ).exclude(id=self.object.id).distinct()[:3]
+        ).exclude(id=self.object.id).distinct().only("title", "slug")[:10]
         context.update({
             "related_posts": related_posts,
             "disqus_shortname": getattr(settings, 'DISQUS_SHORTNAME'),

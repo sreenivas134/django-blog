@@ -122,28 +122,32 @@
                       <span class="heading">You may Like</span>
                     </div>
                     <div class="row">
-                      {% for post in related_posts %}
-                        <!-- recent_blog starts here -->
-                        <div class="col-md-4">
-                          <div class="blog_block">
-                           <div class="blog_date">
-                              {{ post.published_on|date:"F d, Y" }}
+                        <ul>
+                          {% for post in related_posts %}
+                            <!-- recent_blog starts here -->
+                            <li class="col-md-6">
+                            <div>
+                              <div class="blog_block">
+    <!--                           <div class="blog_date">-->
+    <!--                              {{ post.published_on|date:"F d, Y" }}-->
+    <!--                            </div>-->
+                                <div class="blog_title">
+                                   <a href="{% url 'blog_post_view' blog_slug=post.slug %}">{{ post.title }}</a>
+                                </div>
+    <!--                            <div class="blog_cat_author">-->
+    <!--                              <a href="#" class="author">By {{ post.user.first_name }}</a>-->
+    <!--                              <a href="{% url 'selected_category' category_slug=post.category.slug %}" class="category">{{ post.category }}</a>-->
+    <!--                            </div>-->
+    <!--                            <br clear="all">-->
+    <!--                            <div class="blog_content">-->
+    <!--                              {{ post.content|safe|truncatewords_html:20  }}-->
+    <!--                            </div>-->
+                              </div>
                             </div>
-                            <div class="blog_title">
-                               <a href="{% url 'blog_post_view' blog_slug=post.slug %}">{{ post.title }}</a>
-                            </div>
-                            <div class="blog_cat_author">
-                              <a href="#" class="author">By {{ post.user.first_name }}</a>
-                              <a href="{% url 'selected_category' category_slug=post.category.slug %}" class="category">{{ post.category }}</a>
-                            </div>
-                            <br clear="all">
-                            <div class="blog_content">
-                              {{ post.content|safe|truncatewords_html:20  }}
-                            </div>
-                          </div>
-                        </div>
-                        <!-- recent blog ends here -->
-                      {% endfor %}
+                            </li>
+                            <!-- recent blog ends here -->
+                          {% endfor %}
+                        </ul>
                     </div>
                   </div>
                 </div>
