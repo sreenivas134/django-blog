@@ -5,19 +5,19 @@
 <!-- breadcrumbs-schema -->
 <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
   <li itemprop="itemListElement" itemscope
-      itemtype="http://schema.org/ListItem">
+      itemtype="http://schema.org/ListItem" name="Home">
     <a itemprop="item" href="/">
         <span itemprop="name">Home</span></a>
     <meta itemprop="position" content="1" />
   </li>
   <li itemprop="itemListElement" itemscope
-      itemtype="http://schema.org/ListItem">
+      itemtype="http://schema.org/ListItem" name="{{ blog_name.category }}">
     <a itemprop="item" href="{% url 'selected_category' category_slug=blog_name.category.slug %}">
       <span itemprop="name"> {{ blog_name.category }}</span></a>
     <meta itemprop="position" content="2" />
   </li>
   <li itemprop="itemListElement" itemscope
-      itemtype="http://schema.org/ListItem">
+      itemtype="http://schema.org/ListItem" name="{{ blog_name.title }}">
     <a itemprop="item" href="">
       <span itemprop="name"> {{ blog_name.title }}</span></a>
     <meta itemprop="position" content="3" />
