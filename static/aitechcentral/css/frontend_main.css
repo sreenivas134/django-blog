@@ -728,7 +728,7 @@ header .navbar-default {
           color: #666;
           line-height: 21px;
           font-weight: 400;
-          font-size: 15px;
+          font-size: inherit;
           display: inline-block;
           padding: 5px 5px; }
           .main_container .middle_container .main_right_container .recent_posts_container .panel .panel-body .category_list li a:hover {
