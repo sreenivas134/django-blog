@@ -82,7 +82,7 @@ def blog_title():
 
 @register.filter
 def category_posts(category):
-    return Post.objects.filter(category=category).count()
+    return Post.objects.filter(category=category, status='Published').count()
 
 
 @register.simple_tag

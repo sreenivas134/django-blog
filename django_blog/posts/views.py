@@ -164,7 +164,7 @@ class BlogPostView(DetailView):
             status='Published',
             category=self.object.category,
             tags__in=self.object.tags.all()
-        ).exclude(id=self.object.id).distinct().only("title", "slug")[:10]
+        ).exclude(id=self.object.id).distinct()[:10]
         context.update({
             "related_posts": related_posts,
             "disqus_shortname": getattr(settings, 'DISQUS_SHORTNAME'),
