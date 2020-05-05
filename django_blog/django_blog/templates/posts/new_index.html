@@ -50,7 +50,7 @@
           <li itemprop="itemListElement" itemscope
               itemtype="http://schema.org/ListItem">
             <a itemprop="item" href="/">
-                <span itemprop="tag">{{ tag }}</span></a>
+                <span itemprop="name">{{ tag }}</span></a>
             <meta itemprop="position" content="3" />
           </li>
           {% endif %}
@@ -64,7 +64,7 @@
           <li itemprop="itemListElement" itemscope
               itemtype="http://schema.org/ListItem">
             <a itemprop="item" href="/">
-                <span itemprop="month">{{ date|date:"F Y"}}</span></a>
+                <span itemprop="name">{{ date|date:"F Y"}}</span></a>
             <meta itemprop="position" content="3" />
           </li>
           {% endif %}
